@@ -1,0 +1,102 @@
+:root {
+  --c-text: hsl(200, 15%, 8%);
+  --c-border: hsl(0, 0%, 50%);
+  --c-background: hsl(0, 0%, 99%);
+  --c-element: hsl(0, 0%, 100%);
+
+  --w-light: 300;
+  --w-semibold: 600;
+  --w-extrabold: 800;
+
+  --fs-little: 1rem;
+  --fs-normal: 1.4rem;
+  --fs-big: 2rem;
+  --fs-biggest: 3rem;
+
+  --shadow: 0px 4px 8px 0px hsla(0, 0%, 50%, 25%);
+}
+
+[data-theme="dark"]{
+  --c-text: hsl(0, 100%, 100%);
+  --c-element: hsl(209, 23%, 22%);
+  --c-background: hsl(207, 26%, 17%);
+  --shadow: 0px 4px 8px 0px hsla(0, 0%, 0%, 0.25);
+}
+
+
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+*:not(dialog) {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+html {
+  font-size: 62.5%;
+}
+
+@media (max-width: 48rem) {
+    html {
+        font-size: 50%;
+    }
+}
+
+body {
+  /* 4. Add accessible line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+  font: var(--w-light) 1.6rem 'Nunito Sans', sans-serif;
+  background-color: var(--c-background);
+  color: var(--c-text);
+}
+
+b {
+  font-weight: var(--w-semibold);
+}
+
+/* 6. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+  font-weight: var(--w-extrabold);
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+button {
+  color: var(--c-text);
+}
