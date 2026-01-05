@@ -1,6 +1,6 @@
 import { useEffect, useState, createContext, useContext } from 'react';
 import './App.css'
-import {BrowserRouter, Routes, Route, Link, useParams} from 'react-router-dom';
+import {HashRouter, Routes, Route, Link, useParams} from 'react-router-dom';
 
 const DataContext = createContext();
 
@@ -19,7 +19,7 @@ function App() {
   
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <DataContext.Provider value={data}>
           <Navbar />
           <div className="wrapper">
@@ -29,7 +29,7 @@ function App() {
           </Routes>
           </div>
         </DataContext.Provider>
-      </BrowserRouter>
+      </HashRouter>
 
     </>
   )
