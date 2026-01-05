@@ -78,10 +78,11 @@
     background-color: var(--c-element);
     border: none;
     display: flex;
-    gap: 2rem;
+    justify-content: space-between;
     align-items: center;
     font-size: var(--fs-normal);
     box-shadow: var(--shadow);
+    width: 15rem;
 }
 
 .filter-dropdown {
@@ -105,6 +106,19 @@
     border: none;
     font-size: var(--fs-normal);
     text-align: start;
+    position: relative;
+}
+
+.filter-item.active::after, .filter-item:hover::after {
+    content: '';
+    width: 1rem;
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    right: 0.5rem;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--c-border);
 }
 
 .card {
@@ -217,5 +231,12 @@
     }
     .border {
         flex-direction: column;
+    }
+    .filter {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .filter-dropdown {
+        width: fit-content;
     }
 }

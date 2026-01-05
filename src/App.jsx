@@ -49,7 +49,7 @@ function Home() {
   
   return(
     <>
-      <Filter onFilter={handleFilter} onSearch={handleSearch} search={search}/>
+      <Filter onFilter={handleFilter} filter={filter} onSearch={handleSearch} search={search}/>
       <ListCountry filter={filter} search={search}/>
     </>
   )
@@ -147,19 +147,19 @@ function Navbar() {
   )
 }
 
-function Filter({onFilter, search, onSearch}) {
+function Filter({onFilter, search, onSearch, filter}) {
   return(
     <section className="filter">
       <div className='search-bar'>
         <input type="text" value={search} onChange={(e) => onSearch(e.target.value)} className='search-input' placeholder='Search for a country...'/>
         <ion-icon name="search-outline" className="search-icon"></ion-icon>
       </div>
-      <Dropdown onFilter={onFilter}/>
+      <Dropdown onFilter={onFilter} filter={filter}/>
     </section>
   )
 }
 
-function Dropdown({onFilter}) {
+function Dropdown({onFilter, filter}) {
   const [open, setOpen] = useState(true);
 
   function handleDropdown() {
@@ -169,13 +169,14 @@ function Dropdown({onFilter}) {
   function handleFilter(filter){
     setOpen(true);
     onFilter(filter);
+    document.querySelectorAll('.filter-item').forEach(item => (item.innerHTML === filter) ? (item.classList.add('active')) : (item.classList.remove('active')));
   }
 
   return(
     <div className='filter-dropdown' data-open={open}>
-      <button onClick={handleDropdown} aria-expanded={(open)?'Dropdown closed':'Dropdown opened'} className='filter-button'>Filter by Region <ion-icon name="chevron-down-outline"></ion-icon></button>
+      <button onClick={handleDropdown} aria-expanded={(open)?'Dropdown closed':'Dropdown opened'} className='filter-button'>{filter ? filter : 'Filter by Region '}<ion-icon name="chevron-down-outline"></ion-icon></button>
       <div className='filter-menu'>
-        <button className='filter-item' onClick={() => handleFilter('')}>Semua</button>
+        <button className='filter-item' onClick={() => handleFilter('')}>All</button>
         <button className='filter-item' onClick={() => handleFilter('Africa')}>Africa</button>
         <button className='filter-item' onClick={() => handleFilter('Americas')}>Americas</button>
         <button className='filter-item' onClick={() => handleFilter('Asia')}>Asia</button>
